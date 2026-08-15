@@ -1,5 +1,7 @@
 # Apple Purchase Data Analysis with PySpark
 
+![Apple purchase data ETL pipeline using PySpark, Databricks, Delta Lake, CSV and Parquet](docs/assets/apple-pyspark-pipeline.png)
+
 [![PySpark pipeline verification](https://github.com/yasirsavanur/apple-data-analysis-pyspark/actions/workflows/ci.yml/badge.svg)](https://github.com/yasirsavanur/apple-data-analysis-pyspark/actions/workflows/ci.yml)
 
 This is an end-to-end Apache Spark data engineering project built around the small Apple purchase dataset used in Ankur Ranjan's PySpark and Databricks tutorial.
