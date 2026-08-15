@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "apple-data-analysis-pyspark"
+version = "1.0.0"
+description = "A tested PySpark and Delta Lake pipeline for the tutorial-style Apple purchase dataset"
+readme = "README.md"
+requires-python = ">=3.10,<3.13"
+license = { text = "MIT" }
+authors = [{ name = "Yasir Savanur" }]
+dependencies = [
+    "pyspark==3.5.7",
+    "delta-spark==3.3.2",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest==8.4.1",
+    "pytest-cov==6.2.1",
+]
+
+[project.scripts]
+apple-analysis = "apple_data_analysis.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+testpaths = ["tests"]
+markers = [
+    "integration: runs the complete CSV, Parquet and Delta pipeline",
+]
