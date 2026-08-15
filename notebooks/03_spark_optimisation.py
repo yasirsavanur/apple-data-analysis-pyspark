@@ -24,11 +24,13 @@ products = spark.read.parquet(f"{prepared_dir}/products_parquet")
 
 # Repartition causes a shuffle and can increase parallelism before a wide operation.
 repartitioned = transactions.repartition(4, "customer_id")
-print("Partitions after repartition:", repartitioned.rdd.getNumPartitions())
+print("Repartitioned execution plan (look for hashpartitioning with four partitions):")
+repartitioned.explain("formatted")
 
 # Coalesce normally reduces partitions without a full shuffle.
 coalesced = repartitioned.coalesce(2)
-print("Partitions after coalesce:", coalesced.rdd.getNumPartitions())
+print("Coalesced execution plan (look for the Coalesce operator):")
+coalesced.explain("formatted")
 
 # COMMAND ----------
 
