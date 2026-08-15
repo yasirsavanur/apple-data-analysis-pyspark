@@ -6,7 +6,7 @@
 
 This is an end-to-end Apache Spark data engineering project built around the small Apple purchase dataset used in Ankur Ranjan's PySpark and Databricks tutorial.
 
-The project does more than place the tutorial code in a notebook. It turns the same business questions into a reusable and tested pipeline with explicit schemas, a Factory Pattern ingestion layer, data quality checks, modular transformations, Parquet and Delta Lake outputs, Databricks notebooks and automated tests.
+The project does more than place the tutorial code in a notebook. It turns the same business questions into a reusable and tested pipeline with explicit schemas, a Factory Pattern ingestion layer, data quality checks, modular transformations, Parquet and Delta Lake outputs, Databricks-verified notebooks and automated tests.
 
 ## What the pipeline answers
 
@@ -73,7 +73,7 @@ This repository keeps the raw files unchanged. During source preparation, those 
 .
 |-- data/raw/                    Exact tutorial-style CSV files
 |-- docs/                        Data dictionary and expected results
-|-- notebooks/                   Databricks-ready Python notebooks
+|-- notebooks/                   Databricks-verified Python notebooks
 |-- scripts/                     Dependency-free reference validation
 |-- src/apple_data_analysis/     Reusable PySpark package
 |-- tests/                       Unit and end-to-end Spark tests
@@ -144,6 +144,12 @@ This last script uses only the Python standard library. It is useful for checkin
 
 ## Run in Databricks
 
+### Verified Databricks execution
+
+All three notebooks were successfully executed on 16 August 2026 using Databricks serverless compute and the Unity Catalog volume `workspace.default.apple_data`. The run completed source preparation, data quality validation, all five analysis workflows, Parquet and Delta output writes and Spark optimisation plan inspection.
+
+### Run the notebooks
+
 1. Create a folder in a Unity Catalog volume, for example `/Volumes/main/default/apple_data/raw`.
 2. Upload the three files from `data/raw/` into that folder.
 3. Import or clone this repository into a Databricks Git folder.
@@ -156,7 +162,7 @@ This last script uses only the Python standard library. It is useful for checkin
 03_spark_optimisation.py
 ```
 
-The third notebook is explanatory. It displays partition counts and physical plans for repartitioning, coalescing, predicate pushdown and broadcast joins.
+The third notebook is explanatory. It displays formatted execution plans for repartitioning, coalescing, predicate pushdown and broadcast joins.
 
 ## Output tables
 
