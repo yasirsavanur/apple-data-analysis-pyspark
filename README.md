@@ -1,5 +1,7 @@
 # Apple Purchase Data Analysis with PySpark
 
+[![PySpark pipeline verification](https://github.com/yasirsavanur/apple-data-analysis-pyspark/actions/workflows/ci.yml/badge.svg)](https://github.com/yasirsavanur/apple-data-analysis-pyspark/actions/workflows/ci.yml)
+
 This is an end-to-end Apache Spark data engineering project built around the small Apple purchase dataset used in Ankur Ranjan's PySpark and Databricks tutorial.
 
 The project does more than place the tutorial code in a notebook. It turns the same business questions into a reusable and tested pipeline with explicit schemas, a Factory Pattern ingestion layer, data quality checks, modular transformations, Parquet and Delta Lake outputs, Databricks notebooks and automated tests.
