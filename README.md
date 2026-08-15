@@ -170,9 +170,15 @@ The third notebook is explanatory. It displays partition counts and physical pla
 
 ## What this project demonstrates
 
-For a recruiter or hiring manager, the useful part is the structure around the analysis. The project shows how to take several file formats, apply validation before transformation, separate extraction from business logic, make output choices explicit and test the full path rather than relying on screenshots from a notebook.
+This project demonstrates how to ingest data from multiple storage formats, validate it before transformation, separate extraction from business logic and write analytics outputs in Parquet and Delta formats. It also tests the complete pipeline rather than relying only on results displayed in a notebook.
 
 The dataset itself is deliberately tiny and synthetic. The numerical findings should therefore be treated as proof that the pipeline behaves correctly, not as meaningful evidence about real Apple customers.
+
+## Author
+
+**Yasir Savanur**
+
+Portfolio: [yasirsavanur.github.io](https://yasirsavanur.github.io/)
 
 ## Learning source and data provenance
 
