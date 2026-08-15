@@ -5,16 +5,26 @@ from __future__ import annotations
 from pyspark.sql import DataFrame, Window, functions as F
 
 
-PURCHASE_WINDOW = Window.partitionBy("customer_id").orderBy(
-    F.col("transaction_date"), F.col("transaction_id")
-)
+def _purchase_window():
+    """Build the window only after a Spark session is active."""
+
+    return Window.partitionBy("customer_id").orderBy(
+        F.col("transaction_date"), F.col("transaction_id")
+    )
 
 
 def with_next_purchase(transactions: DataFrame) -> DataFrame:
+    purchase_window = _purchase_window()
     return (
-        transactions.withColumn("next_product", F.lead("product_name").over(PURCHASE_WINDOW))
-        .withColumn("next_purchase_date", F.lead("transaction_date").over(PURCHASE_WINDOW))
-        .withColumn("next_transaction_id", F.lead("transaction_id").over(PURCHASE_WINDOW))
+        transactions.withColumn(
+            "next_product", F.lead("product_name").over(purchase_window)
+        )
+        .withColumn(
+            "next_purchase_date", F.lead("transaction_date").over(purchase_window)
+        )
+        .withColumn(
+            "next_transaction_id", F.lead("transaction_id").over(purchase_window)
+        )
     )
 
 
@@ -73,7 +83,7 @@ def purchases_after_first(transactions: DataFrame, customers: DataFrame) -> Data
     """Return each customer's first purchase and ordered later purchases."""
 
     ranked = transactions.withColumn(
-        "purchase_rank", F.row_number().over(PURCHASE_WINDOW)
+        "purchase_rank", F.row_number().over(_purchase_window())
     )
     first = ranked.filter(F.col("purchase_rank") == 1).select(
         "customer_id",
